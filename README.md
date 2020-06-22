@@ -7,8 +7,12 @@ Para rodar a aplicação você vai precisar ter préviamente instalado e devidam
 Uma vez feito isso você deve:
 
 - Baixe o código da aplicação
-- Navegue via linha de comando até a pasta raiz
-- Na pasta raiz execute o comando docker-compose up
+- Navegue via linha de comando (shell ou bash) até a pasta raiz (caso esteja no Windows use o GitBash, Mingw ou Cygwin)
+- Na pasta raiz execute o seguinte comando 
+<pre><code>
+./backend/gradlew build && docker-compose up
+</code></pre>
+
 - espere um pouco até a aplicação terminar de buildar front+backend, baixar os containers e gerar as imagens necessárias
 - acesse algum navegador na URL localhost:9090
 - Pronto agora é só utilizar a aplicação ou fazer requisições na API Rest via postman (tem uma pasta postman na raiz com as coleções postman pré-configuradas para isso)
