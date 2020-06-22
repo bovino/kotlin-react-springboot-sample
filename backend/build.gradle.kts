@@ -7,6 +7,7 @@ plugins {
 	kotlin("plugin.spring") version "1.3.72"
 	kotlin("plugin.jpa") version "1.3.72"
 	kotlin("plugin.allopen") version "1.3.72"
+	id("org.jetbrains.kotlin.plugin.noarg") version "1.3.72"
 }
 
 allOpen {
@@ -39,7 +40,7 @@ dependencies {
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
-	runtimeOnly("mysql:mysql-connector-java")
+	runtimeOnly("mysql:mysql-connector-java:8.0.17")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
