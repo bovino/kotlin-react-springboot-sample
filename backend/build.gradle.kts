@@ -26,6 +26,7 @@ configurations {
 }
 
 repositories {
+	jcenter()
 	mavenCentral()
 }
 
@@ -56,4 +57,8 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
+}
+
+tasks.jar {
+	archiveName = "kotlin-react-boot-mysql-docker-$version.jar"
 }

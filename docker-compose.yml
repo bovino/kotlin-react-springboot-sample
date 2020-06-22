@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+  #react front end
+  faq-app-client:
+    build:
+      context: frontend # Use an image built from the specified dockerfile in the `polling-app-client` directory.
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://127.0.0.1:8080
+    ports:
+      - "9090:8081" # Map the exposed port 80 on the container to port 9090 on the host machine
+    restart: always
+    depends_on:
+      - kotlin-react-boot-mysql-docker-container
+    networks:
+      - frontend
+  #db
   mysql-standalone1:
     image: mysql:8.0
     environment:
@@ -8,14 +23,27 @@ services:
       - MYSQL_DATABASE=test
       - MYSQL_USER=testuser
       - MYSQL_PASSWORD=testuser@123
-  kotlin-springboot-docker-container:
-    image: kotlin-springboot-docker-container
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - backend
+  #spring boot kotlin backend
+  kotlin-react-boot-mysql-docker-container:
+    image: kotlin-react-boot-mysql-docker-container
     ports:
-      - 8082:8080
+      - 8080:8080
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     depends_on:
       - mysql-standalone1
+# Volumes
+volumes:
+  db-data:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:
 
  
