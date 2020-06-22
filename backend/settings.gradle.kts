@@ -1,1 +1,1 @@
-rootProject.name = "sample"
+rootProject.name = "kotlin-react-boot-mysql-docker"

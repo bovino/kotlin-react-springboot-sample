@@ -6,6 +6,13 @@ plugins {
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
 	kotlin("plugin.jpa") version "1.3.72"
+	kotlin("plugin.allopen") version "1.3.72"
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
 }
 
 group = "com.kotlin"
@@ -32,9 +39,12 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	runtimeOnly("mysql:mysql-connector-java")
+	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+		exclude(module = "mockito-core")
 	}
+	testImplementation("com.ninja-squad:springmockk:2.0.1")
 }
 
 tasks.withType<Test> {
