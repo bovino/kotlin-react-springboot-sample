@@ -1,3 +1,6 @@
+server:
+     contextPath: /api
+debug: true
 spring:
     application:
       name: kotlin-react-boot-mysql-docker
@@ -9,7 +12,10 @@ spring:
         hikari:
             initialization-fail-timeout: 0
     jpa:
-        database-platform: org.hibernate.dialect.MySQL8Dialect
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+        database-platform: org.hibernate.dialect.MySQL8InnoDBDialect
         generate-ddl: true
         show-sql: true
         hibernate:

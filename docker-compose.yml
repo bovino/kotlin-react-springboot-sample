@@ -37,6 +37,8 @@ services:
       dockerfile: backend/Dockerfile
     depends_on:
       - mysql-standalone1
+    networks:
+          - backend
 # Volumes
 volumes:
   db-data:
